@@ -145,10 +145,12 @@ with st.form(key='login'):
                             comparison_date = datetime.strptime(previous_date.strftime("%d-%m-%Y"), '%d-%m-%Y')
                             target_date = datetime.strptime(loopDate, '%d-%m-%Y')
                             
-                            print("comparison_date-",  comparison_date.strftime('%d-%m-%Y'))
-                            print("target_date-",  target_date.strftime('%d-%m-%Y'))
+                      
                             
-                            if comparison_date > target_date:
+                            d1 = comparison_date.strftime('%d-%m-%Y')
+                            d2 = target_date.strftime('%d-%m-%Y')
+                            
+                            if d1 > d2:
                                 looping = False
                                 break
                             
@@ -264,7 +266,7 @@ if exportData is not None and len(exportData) > 0:
     df = pd.concat([pd.DataFrame([row]) for row in exportData], ignore_index=True)  
     csv = df.to_csv(index=False)
     st.download_button(
-        label="Download File",
+        label="Download Csv File",
         data=csv,
         file_name="skype_attendance_report.csv",
         mime="text/csv"
