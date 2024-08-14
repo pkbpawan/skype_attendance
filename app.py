@@ -34,7 +34,7 @@ with st.form(key='login'):
         date = st.date_input("Till Date(DD-MM-YYYY)", format="DD-MM-YYYY")
    
     with c1:
-        ISPL_GROUP_ID = st.text_input("Skype Group ID")
+        groupId = st.text_input("Skype Group ID")
     
     submit = st.form_submit_button("Generate Report")
     
@@ -67,7 +67,7 @@ with st.form(key='login'):
                 st.error("Currently we support previous 15 days only!.")
                 exit()
                 
-        if ISPL_GROUP_ID == "":
+        if groupId == "":
             hasValid = False
             st.error("Sorry, Skype group ID cannot be blank.")
             exit()
@@ -101,7 +101,7 @@ with st.form(key='login'):
                 IST = pytz.timezone('Asia/Kolkata')
                 
                 # Get Group User Data
-                groupMembers = sk.chats[ISPL_GROUP_ID]
+                groupMembers = sk.chats[groupId]
                 group_contacts = groupMembers.userIds
 
                 userData = {}
@@ -113,7 +113,7 @@ with st.form(key='login'):
                         pass
 
                 # Get Group Chat Information
-                group = sk.chats.chat(ISPL_GROUP_ID)
+                group = sk.chats.chat(groupId)
                 
                 data = {}
                 looping = True
